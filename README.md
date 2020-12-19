@@ -17,7 +17,7 @@ php arc
 
 ## Installation
 
-Configure your `.env` is update accordingly for AWS S3 and FLAS Credentials. 
+Configure your `.env` accordingly. 
 
 Then run `composer install`.
 
