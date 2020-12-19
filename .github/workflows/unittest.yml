@@ -19,16 +19,6 @@ jobs:
     name: PHP${{ matrix.php }} on ${{ matrix.os }}
 
     steps:
-      - name: Get composer cache directory
-        id: composer-cache
-        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
-
-      - name: Cache dependencies
-        uses: actions/cache@v2
-        with:
-          path: ${{ steps.composer-cache.outputs.dir }}
-          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-          restore-keys: ${{ runner.os }}-composer-
 
       - uses: shivammathur/setup-php@v2
         with:
@@ -38,8 +28,11 @@ jobs:
           coverage: xdebug        
           tools: php-cs-fixer, phpunit:${{ matrix.phpunit }}, composer:v2
 
-      - name: Configure Application
-        run: bin/ci
+      - name: Configure .env
+        run: cp .env.example .env
+
+      - name: Install dependencies
+        run: composer install
 
       - name: Execute tests (Unit and Feature tests) via PHPUnit
         run: vendor/bin/pest
