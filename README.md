@@ -5,6 +5,16 @@ Arc8 CLI is a pre-configured CLI Application code based on Laravel Zero that hel
 
 ------
 
+## Create New Project
+
+```
+composer create-project nasrulhazim/arc8-cli cli-app
+
+cd cli-app
+
+php arc
+```
+
 ## Installation
 
 Configure your `.env` is update accordingly for AWS S3 and FLAS Credentials. 
