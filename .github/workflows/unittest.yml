@@ -28,9 +28,6 @@ jobs:
           coverage: xdebug        
           tools: php-cs-fixer, phpunit:${{ matrix.phpunit }}, composer:v2
 
-      - name: Configure .env
-        run: cp .env.example .env
-
       - name: Install dependencies
         run: composer install
 
