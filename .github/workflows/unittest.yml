@@ -12,14 +12,34 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php: [7.3,7.4,8.0]
-        os: [ubuntu-latest]
+        php: ['7.3', '7.4', '8.0']
+        phpunit: ['latest']
+        os: ['ubuntu-latest']
 
     name: PHP${{ matrix.php }} on ${{ matrix.os }}
 
     steps:
+      - name: Get composer cache directory
+        id: composer-cache
+        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: ${{ runner.os }}-composer-
+
       - uses: actions/checkout@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: mbstring, intl
+          ini-values: post_max_size=256M, max_execution_time=180
+          coverage: xdebug        
+          tools: php-cs-fixer, phpunit:${{ matrix.phpunit }}
+
       - name: Configure Application
         run: bin/ci
+        
       - name: Execute tests (Unit and Feature tests) via PHPUnit
         run: vendor/bin/pest
