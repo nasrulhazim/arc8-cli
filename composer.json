@@ -22,17 +22,23 @@
         "illuminate/log": "^9.2",
         "illuminate/redis": "^9.2",
         "intonate/tinker-zero": "^1.2",
-        "laravel-zero/framework": "^9.2"
+        "laravel-zero/framework": "^9.2",
+        "psr/simple-cache": "^1.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
         "mockery/mockery": "^1.4.4",
+        "nunomaduro/larastan": "^2.1",
+        "nunomaduro/phpinsights": "^2.3",
         "pestphp/pest": "^1.21"
     },
     "autoload": {
         "psr-4": {
             "App\\": "app/"
-        }
+        },
+        "files": [
+            "support/helpers.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
