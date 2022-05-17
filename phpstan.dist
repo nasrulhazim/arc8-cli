@@ -6,14 +6,9 @@ parameters:
         - app/
         - config/
         - database/
-        - resources/
-        - routes/
         - support/
         - tests/
     level: 5
     excludePaths:
         - vendor/
-        - node_modules/
-        - vendor-licensed/
-        - tinker/
     checkMissingIterableValueType: false
