@@ -50,6 +50,13 @@
         "sort-packages": true,
         "optimize-autoloader": true
     },
+    "scripts": {
+        "csfix": [
+            "PHP_CS_FIXER_IGNORE_ENV=1 vendor/bin/php-cs-fixer fix -n",
+            "git add .",
+            "git commit -m '🎨 Apply PHP CS Fixer'"
+        ]
+    },
     "minimum-stability": "dev",
     "prefer-stable": true,
     "bin": ["arc"]
