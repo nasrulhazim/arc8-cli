@@ -6,3 +6,4 @@
 /database/database.sqlite
 .env
 .php_cs.cache
+*.output
